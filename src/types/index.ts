@@ -35,7 +35,7 @@ export interface LearnedRule {
 export interface StaticRule {
   id: string;
   pattern: RegExp | string;  // Regex or literal string to match
-  replacement: string;       // Replacement text
+  replacement: string | ((match: string) => string);  // Replacement text or function
   category: RuleCategory;
   description: string;
   enabled: boolean;

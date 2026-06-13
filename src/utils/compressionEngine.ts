@@ -471,7 +471,7 @@ export function compress(text: string, options: CompressOptions): {
       const escaped = rule.pattern.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
       const regex = new RegExp(`\\b${escaped}\\b`, 'gi');
       const before = result;
-      result = result.replace(regex, rule.replacement);
+      result = result.replace(regex, rule.replacement as string);
       if (result !== before) appliedRules.push(`learned:${rule.pattern}`);
     } catch {
       // Skip malformed patterns
@@ -492,7 +492,7 @@ export function compress(text: string, options: CompressOptions): {
     } else {
       const escaped = (rule.pattern as string).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
       const regex = new RegExp(`\\b${escaped}\\b`, 'gi');
-      result = result.replace(regex, rule.replacement);
+      result = result.replace(regex, rule.replacement as string);
     }
 
     if (result !== before) appliedRules.push(rule.id);
